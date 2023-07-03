@@ -1,0 +1,57 @@
+describe('Login & Logout Scenario', () => {
+    beforeEach(() => {
+      cy.visit('https://www.demoblaze.com/')
+    })
+      it('Success Login', () => {
+      cy.get('#login2').click()
+      cy.get('#loginusername').type('kelompok3')
+      cy.get('#loginpassword').type('12345')
+      cy.wait(100)
+      cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
+    })
+      it('Failed Login - Close Button', () => {
+      cy.get('#login2').click()
+      cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-secondary')
+    })
+      it('Failed Login - Blank Username', () => {
+      cy.get('#login2').click()
+      cy.get('#loginusername')
+      cy.get('#loginpassword').type('12345')
+      cy.wait(100)
+      cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
+    })
+      it('Failed Login - Blank Password', () => {
+      cy.get('#login2').click()
+      cy.get('#loginusername').type('kelompok3')
+      cy.get('#loginpassword')
+      cy.wait(100)
+      cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
+    })
+      it('Failed Login - Blank Username & Password', () => {
+      cy.get('#login2').click()
+      cy.wait(100)
+      cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
+    })
+      it('Failed Login - Wrong Username', () => {
+      cy.get('#login2').click()
+      cy.get('#loginusername').type('kelompok90')
+      cy.get('#loginpassword').type('12345')
+      cy.wait(100)
+      cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
+    })
+      it('Failed Login - Wrong Password', () => {
+      cy.get('#login2').click()
+      cy.get('#loginusername').type('kelompok3')
+      cy.get('#loginpassword').type('11111111111')
+      cy.wait(100)
+      cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
+    })
+      it('Success Logout', () => {
+      cy.get('#login2').click()
+      cy.get('#loginusername').type('kelompok3')
+      cy.get('#loginpassword').type('12345')
+      cy.wait(100)
+      cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
+      cy.get('#logout2').click()
+    })
+})
